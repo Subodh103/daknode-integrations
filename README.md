@@ -32,11 +32,11 @@ Merge this into a compatible client's MCP configuration. Set `DAKNODE_API_KEY` p
 }
 ```
 
-Registry metadata is in [registry/server.json](registry/server.json), under `io.github.Subodh103/daknode`. Registry publication/discovery is separate from plugin installation; not every client searches the same directory. The package is on [PyPI](https://pypi.org/project/daknode-mcp/).
+The server is published in the [official MCP Registry](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.Subodh103%2Fdaknode/versions/0.3.1), under `io.github.Subodh103/daknode`, version 0.3.1. Metadata is in [registry/server.json](registry/server.json). Registry discovery is separate from plugin installation; not every client searches the same directory. The package is on [PyPI](https://pypi.org/project/daknode-mcp/).
 
 ## Python and framework examples
 
-Each example makes **one read, limited to ten messages**, using the published Python SDK. It returns a count, not message bodies. No model API, paid provider key, send loop or customer mail is needed for tests. These are tested tool examples, **not separate framework adapter packages or platform partnerships**.
+Each example makes **one read, limited to ten messages**, using the published Python SDK (0.3.7; TypeScript starter 0.1.6). It returns a count, not message bodies. No model API, paid provider key, send loop or customer mail is needed for tests. These are tested tool examples, **not separate framework adapter packages or platform partnerships**.
 
 Use a separate virtual environment for each framework. ADK and LiveKit currently require different telemetry dependency versions and should not be installed together using these pins.
 

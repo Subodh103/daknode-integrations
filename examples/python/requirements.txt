@@ -1,1 +1,1 @@
-daknode==0.3.6
+daknode==0.3.7

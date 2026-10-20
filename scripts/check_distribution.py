@@ -44,7 +44,7 @@ def check():
     assert plugin["license"] == "MIT" and plugin["name"] == "daknode"
     assert not set(plugin) & {"hooks", "agents", "permissions"}
     config = json.loads((ROOT / "plugins/daknode/.mcp.json").read_text())
-    assert config == {"daknode": {"command": "uvx", "args": ["--from", "daknode-mcp==0.3.1", "daknode-mcp"]}}
+    assert config == {"daknode": {"command": "uvx", "args": ["--from", "daknode-mcp==0.3.1", "daknode-mcp"], "env": {"DAKNODE_API_KEY": "${DAKNODE_API_KEY:-}"}}}
     server = json.loads((ROOT / "registry/server.json").read_text())
     assert server["name"] == "io.github.Subodh103/daknode"
     assert server["version"] == "0.3.1"

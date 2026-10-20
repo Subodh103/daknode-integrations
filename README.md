@@ -13,7 +13,7 @@ Inside Claude Code:
 /plugin install daknode@daknode
 ```
 
-Restart Claude Code if prompted. The plugin starts `daknode-mcp==0.3.1` as a local stdio subprocess and inherits your private environment. It supplies email setup guidance and the existing inbox, message, thread, search and send tools. Review tool approvals, especially sending; installing the plugin does not authorize autonomous mail. Missing credentials cause startup to refuse.
+Restart Claude Code if prompted. Plugin 0.1.1 starts `daknode-mcp==0.3.1` as a local stdio subprocess and explicitly forwards your private `DAKNODE_API_KEY` environment variable. No value is stored in this repository; an unset variable becomes empty and startup refuses. It supplies email setup guidance and the existing inbox, message, thread, search and send tools. Review tool approvals, especially sending; installing the plugin does not authorize autonomous mail.
 
 This is DakNode's own marketplace, not an accepted listing in Anthropic's official marketplace. After adding this marketplace you can find/install **daknode** in that client. Installation does not connect claude.ai or provide a hosted MCP URL.
 

@@ -1,0 +1,21 @@
+{
+  "name": "daknode",
+  "version": "0.2.0",
+  "description": "Local DakNode email tools and user-directed email workflows.",
+  "license": "MIT",
+  "homepage": "https://daknode.com/developers",
+  "repository": "https://github.com/Subodh103/daknode-integrations",
+  "requires_local_executor": true,
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "DakNode",
+    "shortDescription": "Email tools for software agents",
+    "developerName": "DakNode",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write"
+    ]
+  }
+}

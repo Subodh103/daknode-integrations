@@ -1,0 +1,20 @@
+{
+  "name": "daknode-local",
+  "interface": {
+    "displayName": "DakNode local integrations"
+  },
+  "plugins": [
+    {
+      "name": "daknode",
+      "source": {
+        "source": "local",
+        "path": "./plugins/daknode-codex"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

@@ -3,14 +3,14 @@
   "name": "io.github.Subodh103/daknode",
   "title": "DakNode",
   "description": "Email API tools for software agents: inbox creation, message and thread reads, search and sending.",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "websiteUrl": "https://daknode.com/developers",
   "packages": [
     {
       "registryType": "pypi",
       "registryBaseUrl": "https://pypi.org",
       "identifier": "daknode-mcp",
-      "version": "0.3.1",
+      "version": "0.3.2",
       "runtimeHint": "uvx",
       "transport": { "type": "stdio" },
       "environmentVariables": [

@@ -1,6 +1,6 @@
 {
   "name": "daknode",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Use DakNode email tools through its local MCP server. Credentials stay in your environment.",
   "author": { "name": "DakNode", "url": "https://daknode.com" },
   "homepage": "https://daknode.com/developers",

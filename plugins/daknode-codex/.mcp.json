@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "daknode": {
+      "type": "stdio",
+      "command": "uvx",
+      "args": [
+        "--from",
+        "daknode-mcp==0.3.2",
+        "daknode-mcp"
+      ],
+      "env_vars": [
+        "DAKNODE_API_KEY"
+      ]
+    }
+  }
+}

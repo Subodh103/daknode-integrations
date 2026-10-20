@@ -1,6 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { countRecentMail } from "./dist/read-inbox.js";
+import { daknodeTools } from "./dist/vercel-ai.js";
 
 test("server starter uses the published SDK, bounded read and private key", async () => {
   process.env.DAKNODE_API_KEY = "example-test-value-not-a-real-key";
@@ -18,8 +19,13 @@ test("server starter uses the published SDK, bounded read and private key", asyn
   try {
     assert.equal(await countRecentMail(), 1);
     assert.equal(calls, 1);
+    assert.deepEqual(await daknodeTools.count_recent_mail.execute({}, {
+      toolCallId: "test-only", messages: [] }), { count: 1 });
+    assert.equal(calls, 2);
     globalThis.fetch = async () => Response.json({ error: { message: "private-context" } }, { status: 403 });
     await assert.rejects(countRecentMail, /^Error: DakNode refused the read$/);
+    await assert.rejects(() => daknodeTools.count_recent_mail.execute({}, {
+      toolCallId: "test-only", messages: [] }), /^Error: DakNode refused the read$/);
     delete process.env.DAKNODE_API_KEY;
     await assert.rejects(countRecentMail, /Configure the private server environment/);
   } finally {

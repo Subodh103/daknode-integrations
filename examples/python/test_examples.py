@@ -77,6 +77,15 @@ def test_real_selected_framework_tool(transport):
     elif framework == "livekit":
         from livekit_example import recent_mail
         assert recent_mail() == 0
+    elif framework == "openai-agents":
+        from agents.tool_context import ToolContext
+        from openai_agents_example import recent_mail, build_agent
+        assert recent_mail.name == "count_recent_mail"
+        context = ToolContext(context=None, tool_name=recent_mail.name,
+            tool_call_id="test-only", tool_arguments="{}")
+        assert asyncio.run(recent_mail.on_invoke_tool(context, "{}")) == 0
+        agent = build_agent("customer-selected-model")
+        assert agent.tools == [recent_mail]
     else:
-        pytest.fail("Set FRAMEWORK to langchain, google-adk or livekit; no silent skips")
+        pytest.fail("Set FRAMEWORK to langchain, google-adk, livekit or openai-agents; no silent skips")
     assert len(transport) == 1

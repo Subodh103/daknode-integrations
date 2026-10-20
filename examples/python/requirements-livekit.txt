@@ -1,0 +1,2 @@
+-r requirements.txt
+livekit-agents==1.8.8

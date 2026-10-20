@@ -1,0 +1,21 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.Subodh103/daknode",
+  "title": "DakNode",
+  "description": "Email API tools for software agents: inbox creation, message and thread reads, search and sending.",
+  "version": "0.3.1",
+  "websiteUrl": "https://daknode.com/developers",
+  "packages": [
+    {
+      "registryType": "pypi",
+      "registryBaseUrl": "https://pypi.org",
+      "identifier": "daknode-mcp",
+      "version": "0.3.1",
+      "runtimeHint": "uvx",
+      "transport": { "type": "stdio" },
+      "environmentVariables": [
+        { "name": "DAKNODE_API_KEY", "description": "Your privately configured, appropriately scoped DakNode API key.", "isRequired": true, "isSecret": true, "format": "string" }
+      ]
+    }
+  ]
+}

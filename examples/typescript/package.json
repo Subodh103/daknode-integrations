@@ -1,0 +1,10 @@
+{
+  "name": "daknode-server-example",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "engines": { "node": ">=22" },
+  "scripts": { "test": "tsc && node --test test.mjs" },
+  "dependencies": { "daknode": "0.1.5" },
+  "devDependencies": { "typescript": "5.9.3", "@types/node": "24.10.0" }
+}

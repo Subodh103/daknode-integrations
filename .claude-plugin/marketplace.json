@@ -1,0 +1,8 @@
+{
+  "name": "daknode",
+  "owner": { "name": "DakNode", "url": "https://daknode.com" },
+  "metadata": { "description": "Official DakNode email tools for Claude Code." },
+  "plugins": [
+    { "name": "daknode", "source": "./plugins/daknode", "description": "DakNode email tools and safe setup guidance for Claude Code." }
+  ]
+}

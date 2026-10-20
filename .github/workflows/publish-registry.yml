@@ -1,0 +1,36 @@
+name: Publish MCP Registry
+on:
+  workflow_dispatch:
+permissions: {}
+concurrency:
+  group: publish-mcp-registry
+  cancel-in-progress: false
+jobs:
+  verify:
+    uses: ./.github/workflows/verify.yml
+    permissions:
+      contents: read
+  publish:
+    needs: verify
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - name: Check published package ownership
+        run: python3 scripts/check_pypi.py
+      - name: Download pinned official publisher
+        working-directory: registry
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error --location --retry 2 https://github.com/modelcontextprotocol/registry/releases/download/v1.8.1/mcp-publisher_linux_amd64.tar.gz -o publisher.tar.gz
+          echo 'a06c9096dcb9727c13555b6be26c7effa707b01f06a4c561ba7a3635443cf2cc  publisher.tar.gz' | sha256sum --check --strict
+          tar -xzf publisher.tar.gz mcp-publisher
+      - name: Publish using short-lived GitHub identity
+        working-directory: registry
+        run: |
+          set -euo pipefail
+          ./mcp-publisher login github-oidc
+          ./mcp-publisher publish

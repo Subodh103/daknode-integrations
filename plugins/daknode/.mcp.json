@@ -1,0 +1,6 @@
+{
+  "daknode": {
+    "command": "uvx",
+    "args": ["--from", "daknode-mcp==0.3.1", "daknode-mcp"]
+  }
+}

@@ -6,7 +6,7 @@ from pathlib import Path
 from urllib.parse import urlencode
 
 ROOT = Path(__file__).resolve().parents[1]
-MCP_VERSION = "0.3.2"
+MCP_VERSION = "0.3.3"
 
 
 def artifacts():

@@ -140,3 +140,23 @@ compiles/tests the TypeScript example. `publish-registry` is manual, uses GitHub
 OIDC (no stored registry secret), and requires the exact MCP version/ownership
 marker already published on PyPI. A successful registry readback—not this README
 alone—is publication evidence.
+# Hosted MCP and inbox calendars
+
+The hosted adapter uses `https://api.daknode.com/mcp` and the same DakNode API,
+permissions and inbox boundaries as local MCP. Compatible OAuth clients discover
+authorization from the endpoint; approve a workspace, inbox and permissions in
+the consent screen. Revoke access from the console profile menu, **Connected MCP
+apps**. Header-based clients can instead supply their own scoped API key as a
+Bearer token. Never put credentials in the endpoint URL.
+
+Local MCP remains `uvx --from daknode-mcp==0.3.3 daknode-mcp`, with
+`DAKNODE_API_KEY` stored privately in the client's environment. Calendar tools
+cover event reads/creation/updates/cancellation and explicit invitations/RSVP.
+Saving an event alone does not send mail. Writes require a revision and sending
+invitations additionally requires mail-send permission.
+
+Remote push supports bounded, authenticated streaming subscriptions and the
+draft MCP Events extension documented in the package README. Webhook delivery
+mode and automatic ChatGPT task triggers are not supported or claimed. A
+client's actual protocol support is required; directory listing or marketplace
+approval is separate from hosting the endpoint.

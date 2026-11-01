@@ -5,7 +5,7 @@
       "command": "uvx",
       "args": [
         "--from",
-        "daknode-mcp==0.3.2",
+        "daknode-mcp==0.3.3",
         "daknode-mcp"
       ],
       "env_vars": [

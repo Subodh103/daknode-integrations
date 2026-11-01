@@ -32,7 +32,7 @@ Merge this into a compatible client's MCP configuration. Set `DAKNODE_API_KEY` p
 }
 ```
 
-Registry namespace: `io.github.Subodh103/daknode`. The previous release is [0.3.1](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.Subodh103%2Fdaknode/versions/0.3.1); this batch's metadata targets 0.3.2 in [registry/server.json](registry/server.json). Exact-version registry readback is required before claiming that update is discoverable. Registry discovery is separate from plugin installation; not every client searches the same directory. The package is on [PyPI](https://pypi.org/project/daknode-mcp/).
+Registry namespace: `io.github.Subodh103/daknode`. The previous release is [0.3.2](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.Subodh103%2Fdaknode/versions/0.3.2); this batch's metadata targets 0.3.3 in [registry/server.json](registry/server.json). Exact-version registry readback is required before claiming that update is discoverable. Registry discovery is separate from plugin installation; not every client searches the same directory. The package is on [PyPI](https://pypi.org/project/daknode-mcp/).
 
 ### Write-tool contracts
 

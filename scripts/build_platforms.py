@@ -6,7 +6,7 @@ from pathlib import Path
 from urllib.parse import urlencode
 
 ROOT = Path(__file__).resolve().parents[1]
-MCP_VERSION = "0.3.3"
+MCP_VERSION = "0.3.4"
 
 
 def artifacts():
@@ -18,7 +18,7 @@ def artifacts():
         "plugins/daknode/skills/email/SKILL.md": skill,
         "plugins/daknode-codex/skills/daknode-email/SKILL.md": skill,
         "plugins/daknode-codex/.codex-plugin/plugin.json": json.dumps({
-            "name": "daknode", "version": "0.2.0",
+            "name": "daknode", "version": "0.2.1",
             "description": "Local DakNode email tools and user-directed email workflows.",
             "license": "MIT", "homepage": "https://daknode.com/developers",
             "repository": "https://github.com/Subodh103/daknode-integrations",

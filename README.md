@@ -32,7 +32,7 @@ Merge this into a compatible client's MCP configuration. Set `DAKNODE_API_KEY` p
 }
 ```
 
-Registry namespace: `io.github.Subodh103/daknode`. The previous release is [0.3.2](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.Subodh103%2Fdaknode/versions/0.3.2); this batch's metadata targets 0.3.3 in [registry/server.json](registry/server.json). Exact-version registry readback is required before claiming that update is discoverable. Registry discovery is separate from plugin installation; not every client searches the same directory. The package is on [PyPI](https://pypi.org/project/daknode-mcp/).
+Registry namespace: `io.github.Subodh103/daknode`. This batch's metadata targets 0.3.4 in [registry/server.json](registry/server.json). Exact-version registry readback is required before claiming that update is discoverable. Registry discovery is separate from plugin installation; not every client searches the same directory. The package is on [PyPI](https://pypi.org/project/daknode-mcp/).
 
 ### Write-tool contracts
 
@@ -149,9 +149,12 @@ the consent screen. Revoke access from the console profile menu, **Connected MCP
 apps**. Header-based clients can instead supply their own scoped API key as a
 Bearer token. Never put credentials in the endpoint URL.
 
-Local MCP remains `uvx --from daknode-mcp==0.3.3 daknode-mcp`, with
+Local MCP uses `uvx --from daknode-mcp==0.3.4 daknode-mcp`, with
 `DAKNODE_API_KEY` stored privately in the client's environment. Calendar tools
-cover event reads/creation/updates/cancellation and explicit invitations/RSVP.
+cover event reads/creation/updates/cancellation and explicit invitations/RSVP,
+plus agenda/list discovery, free-busy/availability, reliable bookings, reminder
+configuration and explicit recurring-event scopes. Availability is inbox-only;
+reminders notify developer webhooks, not attendees automatically.
 Saving an event alone does not send mail. Writes require a revision and sending
 invitations additionally requires mail-send permission.
 

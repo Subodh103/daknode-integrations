@@ -52,13 +52,13 @@ def check():
     assert plugin["license"] == "MIT" and plugin["name"] == "daknode"
     assert not set(plugin) & {"hooks", "agents", "permissions"}
     config = json.loads((ROOT / "plugins/daknode/.mcp.json").read_text())
-    assert config == {"daknode": {"command": "uvx", "args": ["--from", "daknode-mcp==0.3.3", "daknode-mcp"], "env": {"DAKNODE_API_KEY": "${DAKNODE_API_KEY:-}"}}}
+    assert config == {"daknode": {"command": "uvx", "args": ["--from", "daknode-mcp==0.3.4", "daknode-mcp"], "env": {"DAKNODE_API_KEY": "${DAKNODE_API_KEY:-}"}}}
     server = json.loads((ROOT / "registry/server.json").read_text())
     assert server["name"] == "io.github.Subodh103/daknode"
-    assert server["version"] == "0.3.3"
+    assert server["version"] == "0.3.4"
     assert len(server["description"]) <= 100
     package = server["packages"][0]
-    assert package["identifier"] == "daknode-mcp" and package["version"] == "0.3.3"
+    assert package["identifier"] == "daknode-mcp" and package["version"] == "0.3.4"
     assert package["transport"] == {"type": "stdio"}
     assert package["environmentVariables"][0]["isSecret"] is True
     canonical = (ROOT / "skills/daknode-email/SKILL.md").read_bytes()
@@ -70,7 +70,7 @@ def check():
     assert not set(portable) & {"hooks", "permissions", "agents"}
     catalog = json.loads((ROOT / ".agents/plugins/marketplace.json").read_text())
     assert catalog["plugins"][0]["source"] == {"source": "local", "path": "./plugins/daknode-codex"}
-    launch = {"command": "uvx", "args": ["--from", "daknode-mcp==0.3.3", "daknode-mcp"]}
+    launch = {"command": "uvx", "args": ["--from", "daknode-mcp==0.3.4", "daknode-mcp"]}
     mcp = json.loads((ROOT / "plugins/daknode-codex/.mcp.json").read_text())
     assert mcp["mcpServers"] == {"daknode": {"type": "stdio", **launch, "env_vars": ["DAKNODE_API_KEY"]}}
     cursor = re.search(r"\[Add DakNode MCP\]\((cursor://[^\s)]+)\)", (ROOT / "cursor/install.md").read_text())

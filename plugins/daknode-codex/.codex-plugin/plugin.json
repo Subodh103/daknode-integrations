@@ -1,6 +1,6 @@
 {
   "name": "daknode",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Local DakNode email tools and user-directed email workflows.",
   "license": "MIT",
   "homepage": "https://daknode.com/developers",

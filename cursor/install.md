@@ -1,6 +1,6 @@
 # Add DakNode to Cursor
 
-[Add DakNode MCP](cursor://anysphere.cursor-deeplink/mcp/install?name=daknode&config=eyJjb21tYW5kIjoidXZ4IiwiYXJncyI6WyItLWZyb20iLCJkYWtub2RlLW1jcD09MC4zLjMiLCJkYWtub2RlLW1jcCJdfQ%3D%3D)
+[Add DakNode MCP](cursor://anysphere.cursor-deeplink/mcp/install?name=daknode&config=eyJjb21tYW5kIjoidXZ4IiwiYXJncyI6WyItLWZyb20iLCJkYWtub2RlLW1jcD09MC4zLjQiLCJkYWtub2RlLW1jcCJdfQ%3D%3D)
 
 Requires uv and Python 3.10+. Review Cursor's installation prompt. The link contains configuration only, never credentials. Set DAKNODE_API_KEY privately in Cursor's MCP environment/secret settings before connecting; shell inheritance depends on how Cursor was launched. Never commit that value.
 

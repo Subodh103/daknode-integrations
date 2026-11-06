@@ -13,7 +13,7 @@ Inside Claude Code:
 /plugin install daknode@daknode
 ```
 
-Restart Claude Code if prompted. Plugin 0.2.0 starts `daknode-mcp==0.3.2` as a local stdio subprocess and explicitly forwards your private `DAKNODE_API_KEY` environment variable. No value is stored in this repository; an unset variable becomes empty and startup refuses. It supplies email setup guidance and the existing inbox, message, thread, search and send tools. Review tool approvals, especially sending; installing the plugin does not authorize autonomous mail.
+Restart Claude Code if prompted. The current plugin configuration starts `daknode-mcp==0.3.5` as a local stdio subprocess and explicitly forwards your private `DAKNODE_API_KEY` environment variable. No value is stored in this repository; 0.3.5 supports static local discovery without a key; every data operation still requires authentication. It supplies email and calendar tools, not every REST operation. Review tool approvals, especially writes; installing the plugin does not authorize autonomous mail. Missing-key data operations return private-setup guidance before any API request.
 
 This is DakNode's own marketplace, not an accepted listing in Anthropic's official marketplace. After adding this marketplace you can find/install **daknode** in that client. Installation does not connect claude.ai or provide a hosted MCP URL.
 
@@ -26,21 +26,28 @@ Merge this into a compatible client's MCP configuration. Set `DAKNODE_API_KEY` p
   "mcpServers": {
     "daknode": {
       "command": "uvx",
-      "args": ["--from", "daknode-mcp==0.3.2", "daknode-mcp"]
+      "args": ["--from", "daknode-mcp==0.3.5", "daknode-mcp"]
     }
   }
 }
 ```
 
-Registry namespace: `io.github.Subodh103/daknode`. This batch's metadata targets 0.3.4 in [registry/server.json](registry/server.json). Exact-version registry readback is required before claiming that update is discoverable. Registry discovery is separate from plugin installation; not every client searches the same directory. The package is on [PyPI](https://pypi.org/project/daknode-mcp/).
+Registry namespace: `io.github.Subodh103/daknode`. This batch's metadata targets 0.3.5 in [registry/server.json](registry/server.json). Exact-version registry readback is required before claiming that update is discoverable. Registry discovery is separate from plugin installation; not every client searches the same directory. The package is on [PyPI](https://pypi.org/project/daknode-mcp/).
 
 ### Write-tool contracts
 
 MCP 0.3.2 repairs two write blockers: `create_inbox` requires `alias`, and `send`
 requires `idempotency_key`. Keep the key stable when retrying the same approved
 message; never generate another just to bypass a refusal. Omitting `thread_id`
-opens a new conversation. Acceptance is not delivery. Seven existing tools remain;
-this update does not expose every SDK method or grant permission to send mail.
+opens a new conversation. Acceptance is not delivery. Current 0.3.5 exposes 21
+email/calendar tools; it does not expose every SDK method or grant permission to
+send mail. See the [MCP setup guide](https://daknode.com/integrations/mcp/).
+
+### Private vulnerability reports
+
+Use the existing support contact in [SECURITY.md](SECURITY.md), not public issues
+containing credentials or customer data. This reporting path promises no response
+deadline or bounty and does not change the integration-only license boundary.
 
 ## Codex local plugin
 
@@ -79,7 +86,7 @@ does not install the other or make unsupported clients compatible.
 
 ## Python and framework examples
 
-Each example makes **one read, limited to ten messages**, using the published Python SDK (0.3.7; TypeScript starter 0.1.6). It returns a count, not message bodies. No model API, paid provider key, send loop or customer mail is needed for tests. These are tested tool examples, **not separate framework adapter packages or platform partnerships**.
+Each example makes **one read, limited to ten messages**. The framework fixture files retain compatibility pins for Python SDK 0.3.7 and TypeScript 0.1.6; they are not the newest releases. The website's first-read guides additionally verify the same bounded starters against Python 0.3.9 and TypeScript 0.1.8. Each returns a count, not message bodies. No model API, paid provider key, send loop or customer mail is needed for tests. These are tested tool examples, **not separate framework adapter packages or platform partnerships**.
 
 Use a separate virtual environment for each framework. ADK and LiveKit currently require different telemetry dependency versions and should not be installed together using these pins.
 
@@ -149,7 +156,7 @@ the consent screen. Revoke access from the console profile menu, **Connected MCP
 apps**. Header-based clients can instead supply their own scoped API key as a
 Bearer token. Never put credentials in the endpoint URL.
 
-Local MCP uses `uvx --from daknode-mcp==0.3.4 daknode-mcp`, with
+Local MCP uses `uvx --from daknode-mcp==0.3.5 daknode-mcp`, with
 `DAKNODE_API_KEY` stored privately in the client's environment. Calendar tools
 cover event reads/creation/updates/cancellation and explicit invitations/RSVP,
 plus agenda/list discovery, free-busy/availability, reliable bookings, reminder

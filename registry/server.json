@@ -3,18 +3,18 @@
   "name": "io.github.Subodh103/daknode",
   "title": "DakNode",
   "description": "Email and calendar API tools for agents: inboxes, conversations, availability and reliable booking.",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "websiteUrl": "https://daknode.com/developers",
   "packages": [
     {
       "registryType": "pypi",
       "registryBaseUrl": "https://pypi.org",
       "identifier": "daknode-mcp",
-      "version": "0.3.4",
+      "version": "0.3.5",
       "runtimeHint": "uvx",
       "transport": { "type": "stdio" },
       "environmentVariables": [
-        { "name": "DAKNODE_API_KEY", "description": "Your privately configured, appropriately scoped DakNode API key.", "isRequired": true, "isSecret": true, "format": "string" }
+        { "name": "DAKNODE_API_KEY", "description": "Required for data operations; optional for static local discovery. Configure privately.", "isRequired": false, "isSecret": true, "format": "string" }
       ]
     }
   ]

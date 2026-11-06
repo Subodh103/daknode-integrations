@@ -1,7 +1,7 @@
 {
   "daknode": {
     "command": "uvx",
-      "args": ["--from", "daknode-mcp==0.3.4", "daknode-mcp"],
+      "args": ["--from", "daknode-mcp==0.3.5", "daknode-mcp"],
     "env": { "DAKNODE_API_KEY": "${DAKNODE_API_KEY:-}" }
   }
 }

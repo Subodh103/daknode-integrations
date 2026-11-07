@@ -25,6 +25,9 @@ PUBLIC_FILES = frozenset({
     "skills/daknode-email/SKILL.md", "scripts/build_platforms.py",
     "examples/python/openai_agents_example.py", "examples/python/requirements-openai-agents.txt",
     "examples/typescript/vercel-ai.ts",
+    "toolkits/pyproject.toml", "toolkits/README.md",
+    "toolkits/src/daknode_toolkit/__init__.py", "toolkits/src/daknode_toolkit/toolkit.py",
+    "toolkits/tests/test_toolkit.py",
 })
 IGNORED_DIRS = {".git", "node_modules", "dist", ".venv", "__pycache__", ".pytest_cache"}
 

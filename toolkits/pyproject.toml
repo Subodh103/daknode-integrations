@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "daknode-toolkit"
+version = "0.1.0"
+description = "Permission-conscious customer-side DakNode tools for agent frameworks"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = ["daknode>=0.3.10,<0.4", "httpx>=0.23,<0.29"]
+
+[project.optional-dependencies]
+langchain = ["langchain-core==1.7.6"]
+crewai = ["crewai==1.15.37"]
+llamaindex = ["llama-index-core==0.14.25"]
+test = ["pytest>=8,<10"]
+
+[tool.setuptools.packages.find]
+where = ["src"]

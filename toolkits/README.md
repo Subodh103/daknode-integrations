@@ -1,7 +1,7 @@
 # DakNode customer-side framework toolkit
 
-Source implementation, not yet published to PyPI. Install from this checkout:
-`python -m pip install './integrations/toolkits[langchain]'` (or `crewai` or
+Source implementation, not yet published to PyPI. From the toolkit directory
+(`toolkits` in the public repository), run `python -m pip install '.[langchain]'` (or `crewai` or
 `llamaindex`). Python3.10+. Frameworks remain optional and outside the backend.
 Use a separate environment per framework if your application's dependencies
 conflict. No model call or network call occurs on import or tool construction.

@@ -90,8 +90,8 @@ New source-only [framework toolkit](toolkits/README.md): optional LangChain,
 CrewAI and LlamaIndex adapters share the existing SDK transport. Six bounded
 read tools by default; draft preparation/edit/cancel and direct-policy sending
 require explicit application configuration. No human-approval bypass or model
-loop. This new toolkit is not yet on PyPI or exported to the public integration
-repository by this work. Older bounded-count examples below remain available.
+loop. This toolkit is available as source in the public integration repository,
+not yet as a PyPI package. Older bounded-count examples below remain available.
 
 Each example makes **one read, limited to ten messages**. The framework fixture files retain compatibility pins for Python SDK 0.3.7 and TypeScript 0.1.6; they are not the newest releases. The website's first-read guides additionally verify the same bounded starters against Python 0.3.9 and TypeScript 0.1.8. Each returns a count, not message bodies. No model API, paid provider key, send loop or customer mail is needed for tests. These are tested tool examples, **not separate framework adapter packages or platform partnerships**.
 

@@ -1,0 +1,28 @@
+{
+  "name": "daknode-toolkit",
+  "version": "0.1.0",
+  "description": "Inbox-scoped customer-side DakNode tools for Vercel AI SDK and LangChain",
+  "type": "module",
+  "license": "MIT",
+  "engines": { "node": ">=22" },
+  "files": ["dist", "README.md", "LICENSE"],
+  "exports": {
+    ".": { "types": "./dist/index.d.ts", "default": "./dist/index.js" },
+    "./vercel": { "types": "./dist/vercel.d.ts", "default": "./dist/vercel.js" },
+    "./langchain": { "types": "./dist/langchain.d.ts", "default": "./dist/langchain.js" }
+  },
+  "repository": { "type": "git", "url": "git+https://github.com/Subodh103/daknode-integrations.git", "directory": "typescript-toolkit" },
+  "homepage": "https://daknode.com/integrations/",
+  "bugs": { "url": "https://daknode.com/security/reporting/" },
+  "keywords": ["daknode", "email", "agent", "langchain", "vercel", "tools"],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build && node --test tests/*.test.mjs",
+    "test:package": "node tests/package.mjs",
+    "prepack": "npm run build"
+  },
+  "dependencies": { "daknode": "0.1.10", "zod": "4.6.7" },
+  "peerDependencies": { "ai": ">=7.0.146 <8", "@langchain/core": ">=1.3.5 <2" },
+  "peerDependenciesMeta": { "ai": { "optional": true }, "@langchain/core": { "optional": true } },
+  "devDependencies": { "ai": "7.0.146", "@langchain/core": "1.3.5", "typescript": "5.9.3", "@types/node": "24.10.0" }
+}

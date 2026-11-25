@@ -145,6 +145,16 @@ class DakNodeToolkit:
             raise ToolkitRefused("Use a key scoped to the configured inbox")
         return identity
 
+    def check_connection(self):
+        """Explicit application setup check, not a model tool or send-readiness proof."""
+        identity = self._authorize()
+        return {
+            "authenticated": True,
+            "scope": "inbox" if identity.get("inbox_id") == self.inbox_id else "workspace_opt_in",
+            "inbox_id": self.inbox_id,
+            "writes": sorted(self.writes),
+        }
+
     def _result(self, result):
         result = bounded(result)
         if len(json.dumps(result, ensure_ascii=False).encode()) > 16384:

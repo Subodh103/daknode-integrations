@@ -1,0 +1,37 @@
+/** Fresh ESM + typed consumer; no installed optional framework required. */
+import { mkdtempSync, writeFileSync, readFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join, resolve } from 'node:path';
+import { execFileSync } from 'node:child_process';
+import assert from 'node:assert/strict';
+
+const root=process.cwd();
+const temp=mkdtempSync(join(tmpdir(),'daknode-toolkit-consumer-'));
+const packed=JSON.parse(execFileSync('npm',['pack','--json','--pack-destination',temp],{cwd:root,encoding:'utf8'}))[0];
+const files=packed.files.map(f=>f.path).sort();
+assert.deepEqual(files,['LICENSE','README.md','dist/index.d.ts','dist/index.js','dist/langchain.d.ts','dist/langchain.js','dist/vercel.d.ts','dist/vercel.js','package.json'].sort());
+writeFileSync(join(temp,'package.json'),JSON.stringify({name:'daknode-fresh-toolkit-consumer',private:true,type:'module'}));
+execFileSync('npm',['install','--ignore-scripts','--omit=dev','--no-audit','--no-fund',join(temp,packed.filename)],{cwd:temp,stdio:'pipe'});
+const consumer=`import assert from 'node:assert/strict';
+import {createRequire} from 'node:module';
+import {DakNodeToolkit} from 'daknode-toolkit';
+const require=createRequire(import.meta.url);
+for(const name of ['ai','@langchain/core']) assert.throws(()=>require.resolve(name));
+let requests=0;
+const toolkit=new DakNodeToolkit({apiKey:'synthetic-consumer-only',inboxId:'11111111-1111-4111-8111-111111111111',fetch:async()=>{requests++;return Response.json({inbox_id:'11111111-1111-4111-8111-111111111111'});}});
+assert.equal(requests,0);
+assert.equal((await toolkit.checkConnection()).scope,'inbox');
+assert.equal(requests,1);
+assert.equal(toolkit.definitions().length,6);
+`;
+writeFileSync(join(temp,'consumer.mjs'),consumer);
+writeFileSync(join(temp,'consumer.mts'),`import {DakNodeToolkit,type ToolkitOptions} from 'daknode-toolkit';
+const options:ToolkitOptions={apiKey:'synthetic-only',inboxId:'11111111-1111-4111-8111-111111111111'};
+const toolkit=new DakNodeToolkit(options);
+void toolkit;`);
+execFileSync(process.execPath,['consumer.mjs'],{cwd:temp,stdio:'pipe'});
+execFileSync(resolve(root,'node_modules/.bin/tsc'),['--noEmit','--strict','--skipLibCheck','--target','ES2022','--module','NodeNext','consumer.mts'],{cwd:temp,stdio:'pipe'});
+const lock=JSON.parse(readFileSync(join(temp,'package-lock.json'),'utf8'));
+assert.ok(!lock.packages['node_modules/ai']);
+assert.ok(!lock.packages['node_modules/@langchain/core']);
+console.log('Fresh SDK-backed core import, optional-peer absence, scoped setup and TypeScript declarations passed; 9-file artifact only.');

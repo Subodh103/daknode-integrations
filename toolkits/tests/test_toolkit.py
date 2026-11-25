@@ -51,6 +51,31 @@ def test_default_reads_only_and_no_request_on_construction():
     t.close()
 
 
+def test_connection_check_is_explicit_minimal_and_not_a_registered_tool():
+    t, requests = toolkit()
+    assert requests == []
+    result = t.check_connection()
+    assert result == {"authenticated": True, "scope": "inbox", "inbox_id": INBOX, "writes": []}
+    assert len(requests) == 1
+    assert "synthetic-never-live" not in json.dumps(result)
+    assert "check_connection" not in {fn.__name__ for fn in t.functions()}
+    t.close()
+
+
+def test_connection_check_cannot_turn_wrong_scope_into_success():
+    t, _ = toolkit(lambda r: httpx.Response(200, json={"inbox_id": OTHER}))
+    with pytest.raises(ToolkitRefused):
+        t.check_connection()
+    t.close()
+
+
+def test_connection_check_discloses_deliberate_workspace_opt_in_without_broad_ids():
+    t, _ = toolkit(lambda r: httpx.Response(200, json={"inbox_id": None, "private": "not-a-setup-result"}), allow_workspace_key=True)
+    result = t.check_connection()
+    assert result["scope"] == "workspace_opt_in" and "private" not in result
+    t.close()
+
+
 def test_scoped_identity_refusal_precedes_data():
     t, requests = toolkit(lambda r: httpx.Response(200, json={"inbox_id": OTHER}))
     with pytest.raises(ToolkitRefused):

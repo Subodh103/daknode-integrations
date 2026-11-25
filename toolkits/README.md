@@ -41,6 +41,18 @@ failures omit response bodies and secrets. No telemetry is added by this package
 your chosen framework may have its own callbacks/tracing—configure them before
 processing private mail. Call close() or use the context manager.
 
+For an explicit application setup check, call `toolkit.check_connection()`.
+It reuses the scoped identity check and returns minimal binding/write settings,
+never a credential. It is not registered as a model tool and does not prove all
+permissions, plan features or email delivery. Construction/import stays offline.
+Missing key: set a private server credential. Wrong scope: use a key bound to the
+intended inbox (or deliberate workspace opt-in). Never paste credentials into
+model prompts, support chat or frontend code.
+
+The adjacent [TypeScript toolkit](../typescript-toolkit/README.md) provides
+source-only native Vercel AI SDK and LangChain JS bindings with the same narrow
+read/default, reviewed-draft and explicit direct-send boundaries.
+
 Email trash currently has no public API operation (console folder controls are
 separate), so no fake email-delete tool is advertised. cancel_draft is not mail
 erasure. This package does not change approval, privacy or deletion semantics.

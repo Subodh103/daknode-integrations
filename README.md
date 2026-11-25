@@ -93,6 +93,12 @@ require explicit application configuration. No human-approval bypass or model
 loop. This toolkit is available as source in the public integration repository,
 not yet as a PyPI package. Older bounded-count examples below remain available.
 
+The [TypeScript toolkit](typescript-toolkit/README.md) adds source-only Vercel AI
+SDK and LangChain JS bindings using the published SDK. Core imports need neither
+framework; reads are the default, reviewed drafts/direct sending are explicit.
+Both toolkits offer an application-only connection check. These candidates are
+not registry releases or evidence that pending API changes have been deployed.
+
 Each example makes **one read, limited to ten messages**. The framework fixture files retain compatibility pins for Python SDK 0.3.7 and TypeScript 0.1.6; they are not the newest releases. The website's first-read guides additionally verify the same bounded starters against Python 0.3.9 and TypeScript 0.1.8. Each returns a count, not message bodies. No model API, paid provider key, send loop or customer mail is needed for tests. These are tested tool examples, **not separate framework adapter packages or platform partnerships**.
 
 Use a separate virtual environment for each framework. ADK and LiveKit currently require different telemetry dependency versions and should not be installed together using these pins.

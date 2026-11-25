@@ -1,14 +1,22 @@
 [build-system]
-requires = ["setuptools>=75"]
+requires = ["setuptools>=77"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "daknode-toolkit"
 version = "0.1.0"
 description = "Permission-conscious customer-side DakNode tools for agent frameworks"
+license = "MIT"
+license-files = ["LICENSE"]
+keywords = ["daknode", "email", "langchain", "crewai", "llamaindex", "tools"]
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = ["daknode>=0.3.10,<0.4", "httpx>=0.23,<0.29"]
+
+[project.urls]
+Homepage = "https://daknode.com/integrations/"
+Repository = "https://github.com/Subodh103/daknode-integrations/tree/main/toolkits"
+Security = "https://daknode.com/security/reporting/"
 
 [project.optional-dependencies]
 langchain = ["langchain-core==1.7.6"]

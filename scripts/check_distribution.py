@@ -28,6 +28,12 @@ PUBLIC_FILES = frozenset({
     "toolkits/pyproject.toml", "toolkits/README.md",
     "toolkits/src/daknode_toolkit/__init__.py", "toolkits/src/daknode_toolkit/toolkit.py",
     "toolkits/tests/test_toolkit.py",
+    "toolkits/LICENSE",
+    "toolkits/scripts/check_package.py",
+    "typescript-toolkit/package.json", "typescript-toolkit/package-lock.json",
+    "typescript-toolkit/tsconfig.json", "typescript-toolkit/README.md", "typescript-toolkit/LICENSE",
+    "typescript-toolkit/src/index.ts", "typescript-toolkit/src/vercel.ts", "typescript-toolkit/src/langchain.ts",
+    "typescript-toolkit/tests/toolkit.test.mjs", "typescript-toolkit/tests/package.mjs",
 })
 IGNORED_DIRS = {".git", "node_modules", "dist", ".venv", "__pycache__", ".pytest_cache"}
 
@@ -38,6 +44,8 @@ def check():
         relative = path.relative_to(ROOT)
         if any(part in IGNORED_DIRS for part in relative.parts):
             continue
+        if relative.parts[0] == 'toolkits' and any(part == 'build' or part.endswith('.egg-info') for part in relative.parts):
+            continue  # local wheel-build output, never part of PUBLIC_FILES
         assert not path.is_symlink(), f"Symlink refused: {relative}"
         if not path.is_file():
             continue
